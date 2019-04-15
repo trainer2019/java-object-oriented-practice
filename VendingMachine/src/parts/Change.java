@@ -7,7 +7,7 @@ package parts;
  * パッケージプライベートにしてpartsパッケージ外から
  * 呼び出しを行えないように制御しています。
  */
-class Change {
+public class Change {
 
 	// お釣りの金額を保持するフィールド変数
 	private final int change;
@@ -17,21 +17,21 @@ class Change {
 	 *
 	 * @param change お釣りの合計金額
 	 */
-	Change(int change) {
+	public Change(int change) {
 		this.change = change;
 	}
 
 	/**
 	 *  お釣りの通知を行う
 	 */
-	void informSum() {
+	public void informSum() {
 		System.out.println("[INFO] " + this.change + " 円のお釣りです。");
 	}
 
 	/**
 	 *  お釣りを硬貨で返却する
 	 */
-	void returnCoins() {
+	public void returnCoins() {
 
 		// お釣りが0円なら実行しない
 		if (this.change == 0) {
