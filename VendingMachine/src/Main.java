@@ -29,11 +29,11 @@ public class Main {
 		Stock stock = new Stock(); // 在庫クラスをインスタンス化
 
 		// 在庫があったら購入させる
-		if (stock.isExistStock(drink)) {
+		if (stock.isExist(drink)) {
 			// 支払を実施
 			payment.selling(drink);
 			// 買った分の在庫を減らす
-			stock.subtractStock(drink);
+			stock.take(drink);
 		}
 
 		System.out.println("[DEBUG] ========== 購入処理：終了 ==========");

@@ -10,7 +10,7 @@ import java.util.Map;
 public class Stock {
 
 	// 飲み物の在庫一覧
-	private static Map<String, Integer> drinkStocks = new HashMap<String, Integer>() {
+	public static final Map<String, Integer> drinkStocks = new HashMap<String, Integer>() {
 		{
 			put("coffee", 10);
 			put("orange", 5);
@@ -24,7 +24,7 @@ public class Stock {
 	 * @param drink 飲み物名
 	 * @return 飲み物の在庫の有無
 	 */
-	public boolean isExistStock(String drink) {
+	public boolean isExist(String drink) {
 
 		try {
 			if (drinkStocks.get(drink) > 0) {
@@ -46,7 +46,7 @@ public class Stock {
 	 *
 	 * @param drink 飲み物名
 	 */
-	public void subtractStock(String drink) {
+	public void take(String drink) {
 
 		// 在庫数を取得
 		int stock = drinkStocks.get(drink);

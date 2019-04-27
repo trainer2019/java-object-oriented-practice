@@ -10,10 +10,10 @@ import java.util.Map;
 public class Payment {
 
 	// 投入されたお金の合計
-	private int amount = 0;
+	public int amount = 0;
 
 	// 飲み物の値段
-	private static Map<String, Integer> drinkPrices = new HashMap<String, Integer>() {
+	public static final Map<String, Integer> drinkPrices = new HashMap<String, Integer>() {
 		{
 			put("coffee", 100);
 			put("orange", 120);
@@ -52,7 +52,7 @@ public class Payment {
 	/**
 	 * 支払を行う
 	 *
-	 * @param 飲み物名
+	 * @param drink 飲み物名
 	 */
 	public void selling(String drink) {
 

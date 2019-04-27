@@ -7,7 +7,7 @@ package parts;
 public class Change {
 
 	// お釣りの金額を保持するフィールド変数
-	private final int change;
+	public final int change;
 
 	/**
 	 * コンストラクタ
