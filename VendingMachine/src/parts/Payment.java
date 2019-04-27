@@ -10,10 +10,10 @@ import java.util.Map;
 public class Payment {
 
 	// 投入されたお金の合計
-	private int amount = 0;
+	public int amount = 0;
 
 	// 飲み物の値段
-	private static Map<String, Integer> drinkPrices = new HashMap<String, Integer>() {
+	public static Map<String, Integer> drinkPrices = new HashMap<String, Integer>() {
 		{
 			put("coffee", 100);
 			put("orange", 120);
@@ -52,7 +52,7 @@ public class Payment {
 	/**
 	 * 支払を行う
 	 *
-	 * @param 飲み物名
+	 * @param drink 飲み物名
 	 */
 	public void selling(String drink) {
 
@@ -62,10 +62,9 @@ public class Payment {
 		if (amount >= price) {
 			System.out.println("[INFO] " + drink + " が販売されました。");
 
-			// お釣りの金額を引数にしてお釣り管理クラスをインスタンス化
-			Change change = new Change(amount - price);
-			change.informSum(); // お釣り金額を出力
-			change.returnCoins(); // お釣りを硬貨で返却
+			// お釣りを計算する
+			int change = amount - price;
+			System.out.println("[INFO] " + change + " 円のお釣りです。");
 
 		} else {
 			System.out.println("[WARNING] お金が足りないため購入できません");

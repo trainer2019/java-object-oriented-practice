@@ -10,7 +10,7 @@ import java.util.Map;
 public class Stock {
 
 	// 飲み物の在庫一覧
-	private static Map<String, Integer> drinkStocks = new HashMap<String, Integer>() {
+	public static Map<String, Integer> drinkStocks = new HashMap<String, Integer>() {
 		{
 			put("coffee", 10);
 			put("orange", 5);
