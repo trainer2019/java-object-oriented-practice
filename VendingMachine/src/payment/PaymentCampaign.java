@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * キャンペーン期間中の支払クラス
  */
-public class PaymentCampaign {
+public class PaymentCampaign implements Payment{
 
     // 投入されたお金の合計
     private int amount = 0;

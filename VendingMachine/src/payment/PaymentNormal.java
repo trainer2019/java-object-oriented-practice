@@ -7,7 +7,7 @@ import java.util.Map;
  * 支払クラス
  * - 自動販売機の支払機能を持つクラス
  */
-public class PaymentNormal {
+public class PaymentNormal implements Payment {
 
     // 投入されたお金の合計
     private int amount = 0;
