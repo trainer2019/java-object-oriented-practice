@@ -1,4 +1,6 @@
-import payment.Payment;
+import config.Configs;
+import payment.PaymentCampaign;
+import payment.PaymentNormal;
 import stock.Stock;
 
 /**
@@ -14,26 +16,55 @@ public class Main {
             System.exit(0); // 強制終了させる
         }
 
+        // 設定ファイルの読み込み
+        Configs configs = new Configs();
+
         System.out.println("[DEBUG] ========== 購入処理：開始 ==========");
 
         int coinCount = args.length - 1; // 投入された硬貨の枚数。最後尾は買いたい飲み物なので除外。
-        Payment payment = new Payment(); // 支払クラスをインスタンス化
 
-        // お金を投入する
-        for (int i = 0; i < coinCount; i++) {
-            int coin = Integer.parseInt(args[i]);
-            payment.inputCoin(coin);
-        }
+        if (configs.isCampaign()) { // キャンペーン期間中の場合
+            System.out.println("[INFO] キャンペーン期間中！アタリを引くとジュースが半額！！");
 
-        String drink = args[args.length - 1]; //購入するドリンクを取り出し
-        Stock stock = new Stock(); // 在庫クラスをインスタンス化
+            PaymentCampaign paymentCampaign = new PaymentCampaign(); // 支払クラスをインスタンス化
 
-        // 在庫があったら購入させる
-        if (stock.isExist(drink)) {
-            // 支払を実施
-            payment.selling(drink);
-            // 買った分の在庫を減らす
-            stock.take(drink);
+            // お金を投入する
+            for (int i = 0; i < coinCount; i++) {
+                int coin = Integer.parseInt(args[i]);
+                paymentCampaign.inputCoin(coin);
+            }
+
+            String drink = args[args.length - 1]; //購入するドリンクを取り出し
+            Stock stock = new Stock(); // 在庫クラスをインスタンス化
+
+            // 在庫があったら購入させる
+            if (stock.isExist(drink)) {
+                // 支払を実施
+                paymentCampaign.selling(drink);
+                // 買った分の在庫を減らす
+                stock.take(drink);
+            }
+
+        } else { // キャンペーン期間外の場合
+
+            PaymentNormal paymentNormal = new PaymentNormal(); // 支払クラスをインスタンス化
+
+            // お金を投入する
+            for (int i = 0; i < coinCount; i++) {
+                int coin = Integer.parseInt(args[i]);
+                paymentNormal.inputCoin(coin);
+            }
+
+            String drink = args[args.length - 1]; //購入するドリンクを取り出し
+            Stock stock = new Stock(); // 在庫クラスをインスタンス化
+
+            // 在庫があったら購入させる
+            if (stock.isExist(drink)) {
+                // 支払を実施
+                paymentNormal.selling(drink);
+                // 買った分の在庫を減らす
+                stock.take(drink);
+            }
         }
 
         System.out.println("[DEBUG] ========== 購入処理：終了 ==========");
