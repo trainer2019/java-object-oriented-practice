@@ -1,69 +1,27 @@
 package payment;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * キャンペーン期間中の支払クラス
  */
-public class PaymentCampaign {
-
-    // 投入されたお金の合計
-    private int amount = 0;
-
-    // 飲み物の値段
-    private static final Map<String, Integer> drinkPrices = new HashMap<String, Integer>() {
-        {
-            put("coffee", 100);
-            put("orange", 120);
-            put("cola", 130);
-        }
-    };
-
-    /**
-     * 自動販売機にお金を入れる
-     *
-     * @param coin 投入された硬貨
-     */
-    public void inputCoin(int coin) {
-
-        // 使える硬貨か確認する
-        switch (coin) {
-            case 1:
-            case 5:
-                // 1,5円玉は使えないので返却
-                System.out.println("[WARNING] " + coin + "円玉は返却します。");
-                break;
-            case 10:
-            case 50:
-            case 100:
-            case 500:
-                // 10,50,100,500円玉は使えるので投入金額に加算
-                amount += coin;
-                System.out.println("[INFO] ただいまの合計金額は " + amount + " 円です。");
-                break;
-            default:
-                // それ以外の金額は機械の読み取りミスとして処理する
-                System.out.println("[WARNING] 金額をうまく読み取れませんでした。");
-        }
-    }
+public class PaymentCampaign extends Payment {
 
     /**
      * 支払を行う (キャンペーン期間中なので無料になるアタリ付き！)
      *
      * @param drink 飲み物名
      */
+    @Override
     public void selling(String drink) {
 
         int price = drinkPrices.get(drink);
 
         // 半額チャンスのくじ引き！
-        if (isWinning()){
+        if (isWinning()) {
             System.out.println("[INFO] アタリが出たので半額になります！");
 
             // 値段を半額にする。1の位が5にならないよう制御。
             price = price / 2;
-            if (price % 10 > 0){
+            if (price % 10 > 0) {
                 price = price + (10 - (price % 10));
             }
         } else {
