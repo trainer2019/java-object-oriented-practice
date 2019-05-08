@@ -10,12 +10,12 @@ public interface Payment {
      *
      * @param coin 投入された硬貨
      */
-    void inputCoin(int coin);
+    public abstract void inputCoin(int coin);
 
     /**
      * 支払を行うメソッドの抽象クラス
      *
      * @param drink 飲み物名
      */
-    void selling(String drink);
+    public abstract void selling(String drink);
 }
